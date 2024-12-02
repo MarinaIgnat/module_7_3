@@ -8,18 +8,18 @@ class WordsFinder:
         self.file_names = file_names
 
 #подготовительный метод,
-    def get_all_words(self, *file_names):
+    def get_all_words(self, file_names):
         #Создайте пустой словарь
         all_words = {}
         #Переберите названия файлов и открывайте каждый из них
-        for name in file_names:
-            with open(file_names, encoding='utf-8') as file:
+        for name in self.file_names:
+            with open(name, encoding='utf-8') as file:
                 #Для каждого файла считывайте единые строки, переводя их в нижний регистр
                 lines = file.readline().lower()
                 #Избавьтесь от пунктуации в строке
                 for punctuation in string.punctuation:
                     if punctuation in lines:
-                        lines = file.replace(punctuation, '')
+                        lines = lines.replace(punctuation, '')
                 #Разбейте эту строку на элементы списка
                 list_ = lines.split()
             all_words[name] = list_
